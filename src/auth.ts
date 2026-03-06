@@ -38,7 +38,7 @@ export class OAuth2Authenticator implements Authenticator {
 
   private async refreshToken(): Promise<void> {
     const credentials = Buffer.from(
-      `${this.clientId}:${this.clientSecret}`,
+      `${encodeURIComponent(this.clientId)}:${encodeURIComponent(this.clientSecret)}`,
     ).toString("base64");
 
     const response = await fetch(this.tokenUrl, {
