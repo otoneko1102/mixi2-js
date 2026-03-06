@@ -1,6 +1,6 @@
 {
   "name": "mixi2-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "TypeScript/JavaScript SDK for mixi2 Application API",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -61,5 +61,8 @@
   "dependencies": {
     "@grpc/grpc-js": "^1.14.3",
     "@grpc/proto-loader": "^0.8.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

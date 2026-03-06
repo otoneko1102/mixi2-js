@@ -68,6 +68,7 @@ ESM・CommonJS の両方に対応しています。TypeScript の型定義 (`.d.
 
 ### 前提条件
 
+- **Node.js 18 以上**
 - [mixi2 Developer Platform](https://developer.mixi.social) で開発者登録が完了していること
 - アプリケーションを作成し、認証情報（Client ID / Client Secret / Token URL 等）を取得済みであること
 
