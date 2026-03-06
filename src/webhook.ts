@@ -160,11 +160,11 @@ export class WebhookServer {
         try {
           await this.handler.handle(event);
         } catch (err) {
-          console.error("Failed to handle event:", err);
+          console.error(`Failed to handle event ${event.eventId}:`, err);
         }
       } else {
         Promise.resolve(this.handler.handle(event)).catch((err) => {
-          console.error("Failed to handle event:", err);
+          console.error(`Failed to handle event ${event.eventId}:`, err);
         });
       }
     }

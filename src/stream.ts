@@ -124,7 +124,7 @@ export class StreamWatcher {
 
   private handleEvent(handler: EventHandler, event: Event): void {
     Promise.resolve(handler.handle(event)).catch((err) => {
-      console.error("Failed to handle event:", err);
+      console.error(`Failed to handle event ${event.eventId}:`, err);
     });
   }
 
