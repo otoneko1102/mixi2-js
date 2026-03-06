@@ -48,7 +48,7 @@ npm run format
 
 ### 必要な環境
 
-- Node.js 20 以上
+- Node.js 18 以上
 - npm
 
 ## プルリクエストの手順
