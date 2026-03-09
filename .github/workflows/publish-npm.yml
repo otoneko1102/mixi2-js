@@ -1,0 +1,46 @@
+name: Publish to npm
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install, Build, and Test
+        run: |
+          npm ci
+          npm run lint
+          npm run build
+          npm test
+
+      - name: Publish to npm
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          # If version includes 'dev', publish with 'dev' tag, otherwise use 'latest'
+          if echo "$VERSION" | grep -q 'dev'; then
+            TAG=dev
+          else
+            TAG=latest
+          fi
+          npm publish --provenance --access public --tag "$TAG"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create and Push Git Tag
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          git tag "v$VERSION"
+          git push origin "v$VERSION"
