@@ -1,0 +1,13 @@
+{
+  "name": "@otoneko1102/mixi-js",
+  "version": "0.1.0",
+  "exports": "./src/index.ts",
+  "publish": {
+    "include": [
+      "src/**/*.ts",
+      "proto/**/*.proto",
+      "README.md",
+      "LICENSE"
+    ]
+  }
+}
