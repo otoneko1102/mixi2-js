@@ -1,5 +1,5 @@
 {
-  "name": "@otoneko1102/mixi-js",
+  "name": "@otoneko1102/mixi2-js",
   "version": "0.1.0",
   "exports": "./src/index.ts",
   "publish": {
