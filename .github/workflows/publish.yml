@@ -1,4 +1,4 @@
-name: Manual Publish to npm
+name: Manual Publish to npm and JSR
 
 on:
   workflow_dispatch:
@@ -44,3 +44,16 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           git tag "v$VERSION"
           git push origin "v$VERSION"
+
+  publish-jsr:
+    runs-on: ubuntu-latest
+    needs: publish-npm
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Publish to JSR
+        run: npx jsr publish
