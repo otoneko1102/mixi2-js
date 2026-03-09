@@ -10,8 +10,8 @@
 
 [![npm version](https://img.shields.io/npm/v/mixi2-js?color=cb3837&logo=npm)](https://www.npmjs.com/package/mixi2-js)
 [![npm downloads](https://img.shields.io/npm/dm/mixi2-js?color=cb3837&logo=npm)](https://www.npmjs.com/package/mixi2-js)
-[![JSR](https://jsr.io/badges/@otoneko1102/mixi-js)](https://jsr.io/@otoneko1102/mixi-js)
-[![JSR Score](https://jsr.io/badges/@otoneko1102/mixi-js/score)](https://jsr.io/@otoneko1102/mixi-js)
+[![JSR](https://jsr.io/badges/@otoneko1102/mixi2-js)](https://jsr.io/@otoneko1102/mixi2-js)
+[![JSR Score](https://jsr.io/badges/@otoneko1102/mixi2-js/score)](https://jsr.io/@otoneko1102/mixi2-js)
 [![License](https://img.shields.io/github/license/otoneko1102/mixi2-js?color=blue)](LICENSE)
 [![Node.js](https://img.shields.io/node/v/mixi2-js?color=339933&logo=nodedotjs&logoColor=white)](package.json)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
