@@ -1,6 +1,6 @@
 {
   "name": "mixi2-js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "TypeScript/JavaScript SDK for mixi2 Application API",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -61,16 +61,16 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/jest": "^30.0.0",
-    "@types/node": "^25.3.5",
+    "@types/node": "^25.4.0",
     "eslint": "^10.0.3",
     "eslint-config-prettier": "^10.1.8",
-    "jest": "^30.2.0",
+    "jest": "^30.3.0",
     "npm-check-updates": "^19.6.3",
     "prettier": "^3.8.1",
     "ts-jest": "^29.4.6",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.1"
+    "typescript-eslint": "^8.57.0"
   },
   "engines": {
     "node": ">=18.0.0"
