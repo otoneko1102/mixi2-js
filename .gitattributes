@@ -1,4 +1,5 @@
 # *.proto linguist-detectable=true
+*.proto linguist-vendored
 
 dist/** linguist-generated
 scripts/** linguist-vendored
