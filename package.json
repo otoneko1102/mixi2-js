@@ -25,7 +25,11 @@
   "scripts": {
     "setup": "npm install && node scripts/setup.js",
     "test": "jest",
-    "check": "tsc --noEmit",
+    "check": "npm run check:types && npm run check:lint && npm run check:format",
+    "check:all": "npm run check && npm test && npm run build",
+    "check:types": "tsc --noEmit",
+    "check:lint": "eslint ./src/",
+    "check:format": "prettier --check ./src/",
     "checkversion": "ncu",
     "up": "ncu -u && npm install",
     "lint": "eslint ./src/",

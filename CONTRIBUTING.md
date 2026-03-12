@@ -32,18 +32,6 @@ cd mixi2-js
 
 # 依存関係をインストール
 npm install
-
-# 型チェック
-npm run check
-
-# テストを実行
-npm test
-
-# ビルド
-npm run build
-
-# コードフォーマット
-npm run format
 ```
 
 ### 必要な環境
@@ -51,26 +39,38 @@ npm run format
 - Node.js 18 以上
 - npm
 
+### 主なコマンド
+
+| コマンド | 説明 |
+|---|---|
+| `npm run check` | 型チェック + Lint + フォーマットチェックを一括実行 |
+| `npm run check:all` | 上記 + テスト + ビルドをすべて実行 |
+| `npm run check:types` | 型チェック (`tsc --noEmit`) |
+| `npm run check:lint` | Lint (`eslint`) |
+| `npm run check:format` | フォーマットチェック (`prettier --check`) |
+| `npm test` | テスト実行 |
+| `npm run build` | ビルド (ESM + CJS + `.d.ts`) |
+| `npm run format` | コードフォーマット適用 |
+| `npm run lint:fix` | Lint エラーの自動修正 |
+
 ## プルリクエストの手順
 
 1. **Issue を確認する** — 既存の Issue に関連する場合はリンクしてください。大きな変更の場合は先に Issue で議論してください。
 2. **ブランチを作成する** — `main` から新しいブランチを作成してください。
 3. **変更を実装する** — 公式仕様に準拠していることを確認してください。
-4. **型チェックを実行する** — `npm run check` で型エラーがないことを確認してください。**型チェックの通過は必須です。**
-5. **Lint を実行する** — `npm run lint` で Lint エラーがないことを確認してください。**Lint の通過は必須です。**
-6. **テストを追加・実行する** — `npm test` で全テストが通ることを確認してください。
-7. **フォーマットを適用する** — `npm run format` でコードを整形してください。
-8. **ビルドを確認する** — `npm run build` が成功することを確認してください。
-9. **プルリクエストを作成する** — 変更内容と関連する公式ドキュメント/proto 定義への参照を含めてください。
+4. **チェックを実行する** — `npm run check:all` ですべてのチェックが通ることを確認してください。
+5. **プルリクエストを作成する** — 変更内容と関連する公式ドキュメント / proto 定義への参照を含めてください。
 
 ## コーディング規約
 
 - **言語**: TypeScript（strict モード）
-- **型チェック**: `npm run check`（`tsc --noEmit`）— **PR 前に必ず通過させてください**
-- **Lint**: `npm run lint`（ESLint）— **PR 前に必ず通過させてください**
+- **型チェック**: `npm run check:types`
+- **Lint**: `npm run check:lint`
+- **フォーマットチェック**: `npm run check:format`
 - **フォーマッタ**: Prettier（`npm run format` で整形）
 - **テスト**: Jest
 - **ビルド**: tsup（ESM + CJS + `.d.ts` を出力）
+- **一括チェック**: `npm run check:all`（型 + Lint + フォーマット + テスト + ビルド）
 
 ### 公式仕様との対応
 
