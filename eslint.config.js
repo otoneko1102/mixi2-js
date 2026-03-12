@@ -7,6 +7,6 @@ export default tseslint.config(
   ...tseslint.configs.recommended,
   prettier,
   {
-    ignores: ["dist/", "scripts/", "**/*.test.ts", ".private/", ".sample/"],
+    ignores: ["dist/", "scripts/", "**/*.test.ts", ".private/", ".sample/", "examples/"],
   },
 );
