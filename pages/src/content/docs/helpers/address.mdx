@@ -1,0 +1,127 @@
+---
+title: Address
+description: mixi2 Application API の公式エンドポイント/アドレス定数
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+`Address` は、mixi2 Application API の公式エンドポイント/アドレスを定数として提供するヘルパーです。環境変数や設定ファイルに固定値を持たせる必要がなくなり、コード上で明示的に参照できます。
+
+## インストール
+
+追加インストールは不要です。`mixi2-js` に同梱されています。
+
+<Tabs>
+  <TabItem label="npm">
+    ```typescript
+    // ESM
+    import { tokenUrl, apiAddress, streamAddress } from 'mixi2-js/helpers';
+    // CJS
+    const { tokenUrl, apiAddress, streamAddress } = require('mixi2-js/helpers');
+    ```
+  </TabItem>
+  <TabItem label="JSR">
+    ```typescript
+    import { tokenUrl, apiAddress, streamAddress } from '@otoneko1102/mixi2-js/helpers';
+    ```
+  </TabItem>
+</Tabs>
+
+## なぜ Address を使うのか？
+
+アクセストークンの取得 URL や API サーバーアドレスは固定値ですが、手入力やコピペではミスが起きやすいです。
+
+```typescript
+// ❌ 固定値を手書き
+const authenticator = new OAuth2Authenticator({
+  clientId,
+  clientSecret,
+  tokenUrl: 'https://application-auth.mixi.social/oauth2/token',
+});
+
+const client = new Client({
+  apiAddress: 'application-api.mixi.social',
+  authenticator,
+});
+```
+
+`Address` を使えば、公式の値をそのまま再利用できます:
+
+```typescript
+// ✅ 公式アドレスを参照
+const authenticator = new OAuth2Authenticator({
+  clientId,
+  clientSecret,
+  tokenUrl,
+});
+
+const client = new Client({
+  apiAddress,
+  authenticator,
+});
+```
+
+## 基本的な使い方
+
+<Tabs>
+  <TabItem label="npm">
+    ```typescript
+    import {
+      OAuth2Authenticator,
+      Client,
+      StreamWatcher,
+    } from 'mixi2-js';
+    import { tokenUrl, apiAddress, streamAddress } from 'mixi2-js/helpers';
+    ```
+  </TabItem>
+  <TabItem label="JSR">
+    ```typescript
+    import {
+      OAuth2Authenticator,
+      Client,
+      StreamWatcher,
+    } from '@otoneko1102/mixi2-js';
+    import { tokenUrl, apiAddress, streamAddress } from '@otoneko1102/mixi2-js/helpers';
+    ```
+  </TabItem>
+</Tabs>
+
+```typescript
+const authenticator = new OAuth2Authenticator({
+  clientId: process.env.CLIENT_ID!,
+  clientSecret: process.env.CLIENT_SECRET!,
+  tokenUrl,
+});
+
+const client = new Client({
+  apiAddress,
+  authenticator,
+});
+
+const watcher = new StreamWatcher({
+  streamAddress,
+  authenticator,
+});
+```
+
+## API リファレンス
+
+### 定数
+
+| 定数 | 型 | 説明 |
+|---|---|---|
+| `tokenUrl` | `string` | アクセストークン取得用エンドポイント URL |
+| `apiAddress` | `string` | gRPC API サーバーアドレス |
+| `streamAddress` | `string` | gRPC ストリーミング接続用サーバーアドレス |
+
+### 値
+
+| 定数 | 値 |
+|---|---|
+| `tokenUrl` | `https://application-auth.mixi.social/oauth2/token` |
+| `apiAddress` | `application-api.mixi.social` |
+| `streamAddress` | `application-stream.mixi.social` |
+
+<Aside type="note">
+`Address` は SDK 独自の拡張機能であり、公式 API 仕様には含まれません。公式の仕様については [mixi2 Developer Platform](https://developer.mixi.social/docs) を参照してください。
+</Aside>
