@@ -86,17 +86,17 @@ ESM・CommonJS の両方に対応しています。TypeScript の型定義 (`.d.
 
 ---
 
-## コントリビュート
+## 貢献
 
-コントリビュートを歓迎しています！詳細は [CONTRIBUTING.md](CONTRIBUTING.md) を参照してください。
+貢献を歓迎しています！詳細は [CONTRIBUTING.md](CONTRIBUTING.md) を参照してください。
 
 このプロジェクトは [Contributor Covenant 行動規範](CODE_OF_CONDUCT.md) に準拠しています。
 
-<a href="https://github.com/otoneko1102/mixi2-js/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=otoneko1102/mixi2-js" />
-</a>
+### 貢献者
 
-Made with [contrib.rocks](https://contrib.rocks).
+<a href="https://github.com/otoneko1102/mixi2-js/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=otoneko1102/mixi2-js" alt="Made with contrib.rocks" />
+</a>
 
 ---
 
