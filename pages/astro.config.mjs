@@ -10,6 +10,64 @@ export default defineConfig({
 		starlight({
 			title: 'mixi2-js Docs',
 			customCss: ['./src/styles/custom.css'],
+			head: [
+				{
+					tag: 'script',
+					content:
+						"document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('a[href^=\"http\"]').forEach(a=>{if(!a.hostname||a.hostname!==location.hostname){a.setAttribute('target','_blank');a.setAttribute('rel','noopener noreferrer')}})})",
+				},
+				{
+					tag: 'meta',
+					attrs: { property: 'og:title', content: 'mixi2-js' },
+				},
+				{
+					tag: 'meta',
+					attrs: {
+						property: 'og:description',
+						content: 'mixi2 Application API の非公式 TypeScript/JavaScript SDK',
+					},
+				},
+				{
+					tag: 'meta',
+					attrs: { property: 'og:type', content: 'website' },
+				},
+				{
+					tag: 'meta',
+					attrs: {
+						property: 'og:url',
+						content: 'https://otoneko1102.github.io/mixi2-js/',
+					},
+				},
+				{
+					tag: 'meta',
+					attrs: {
+						property: 'og:image',
+						content: 'https://otoneko1102.github.io/mixi2-js/img/banner.png',
+					},
+				},
+				{
+					tag: 'meta',
+					attrs: { name: 'twitter:card', content: 'summary_large_image' },
+				},
+				{
+					tag: 'meta',
+					attrs: { name: 'twitter:title', content: 'mixi2-js' },
+				},
+				{
+					tag: 'meta',
+					attrs: {
+						name: 'twitter:description',
+						content: 'mixi2 Application API の非公式 TypeScript/JavaScript SDK',
+					},
+				},
+				{
+					tag: 'meta',
+					attrs: {
+						name: 'twitter:image',
+						content: 'https://otoneko1102.github.io/mixi2-js/img/banner.png',
+					},
+				},
+			],
 			logo: {
 				src: './src/assets/logo.svg',
 				replacesTitle: true,
