@@ -43,6 +43,6 @@ description: mixi2-js で使用される型定義の一覧
 | `SendChatMessageRequest` | チャットメッセージ送信リクエスト |
 | `GetStampsRequest` | スタンプ一覧取得リクエスト |
 
-各型の詳細なフィールドについては [API クライアント](/mixi2-js/guides/api-client/) ガイドを参照してください。
+各型の詳細なフィールドについては [API クライアント](/guides/api-client/) ガイドを参照してください。
 
 > 公式の型定義は [mixi2-api](https://github.com/mixigroup/mixi2-api)（Protocol Buffers）を参照してください。

@@ -8,7 +8,7 @@ hero:
   tagline: mixi2 の Application API を利用するための非公式 TypeScript/JavaScript SDK
   actions:
     - text: はじめに
-      link: /mixi2-js/guides/getting-started/
+      link: /guides/getting-started/
       icon: right-arrow
     - text: GitHub
       link: https://github.com/otoneko1102/mixi2-js
@@ -29,17 +29,18 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 ## 特徴
 
 <CardGrid>
-	<LinkCard title="OAuth2 認証" href="/mixi2-js/guides/getting-started/#認証" description="Client Credentials フローによる認証。トークンの自動キャッシュ・有効期限前の自動更新に対応。" />
-	<LinkCard title="gRPC API クライアント" href="/mixi2-js/guides/api-client/" description="8 つの RPC メソッドに対応。ポスト作成・メディアアップロード・チャット送信など。" />
-	<LinkCard title="Webhook サーバー" href="/mixi2-js/guides/webhook/" description="Ed25519 署名検証付き HTTP サーバー。サーバーレス環境にも対応。" />
-	<LinkCard title="gRPC ストリーミング" href="/mixi2-js/guides/streaming/" description="リアルタイムイベント受信。指数バックオフによる自動再接続。外部 URL 不要。" />
+  <LinkCard title="OAuth2 認証" href="/guides/getting-started/#認証" description="Client Credentials フローによる認証。トークンの自動キャッシュ・有効期限前の自動更新に対応。" />
+  <LinkCard title="gRPC API クライアント" href="/guides/api-client/" description="8 つの RPC メソッドに対応。ポスト作成・メディアアップロード・チャット送信など。" />
+  <LinkCard title="Webhook サーバー" href="/guides/webhook/" description="Ed25519 署名検証付き HTTP サーバー。サーバーレス環境にも対応。" />
+  <LinkCard title="gRPC ストリーミング" href="/guides/streaming/" description="リアルタイムイベント受信。指数バックオフによる自動再接続。外部 URL 不要。" />
 </CardGrid>
 
 ## 拡張機能
 
 <CardGrid>
-	<LinkCard title="EventRouter" href="/mixi2-js/helpers/event-router/" description="イベントタイプ別にハンドラを登録できる便利なルーター。" />
-	<LinkCard title="PostBuilder" href="/mixi2-js/helpers/post-builder/" description="ポスト作成リクエストをメソッドチェーンで直感的に組み立てるビルダー。" />
-	<LinkCard title="MediaUploader" href="/mixi2-js/helpers/media-uploader/" description="メディアアップロードの開始から完了待機までを自動化するヘルパー。" />
-	<LinkCard title="ReasonFilter" href="/mixi2-js/helpers/reason-filter/" description="EventReason に基づいてイベントをフィルタリングするミドルウェア。" />
+  <LinkCard title="EventRouter" href="/helpers/event-router/" description="イベントタイプ別にハンドラを登録できる便利なルーター。" />
+  <LinkCard title="PostBuilder" href="/helpers/post-builder/" description="ポスト作成リクエストをメソッドチェーンで直感的に組み立てるビルダー。" />
+  <LinkCard title="MediaUploader" href="/helpers/media-uploader/" description="メディアアップロードの開始から完了待機までを自動化するヘルパー。" />
+  <LinkCard title="Address" href="/helpers/address/" description="公式エンドポイント/アドレス定数を提供するヘルパー。" />
+  <LinkCard title="ReasonFilter" href="/helpers/reason-filter/" description="EventReason に基づいてイベントをフィルタリングするミドルウェア。" />
 </CardGrid>
