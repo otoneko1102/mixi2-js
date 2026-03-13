@@ -4,8 +4,8 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://otoneko1102.github.io',
-	base: '/mixi2-js/',
+	site: 'https://mixi2.js.org',
+	base: '/',
 	integrations: [
 		starlight({
 			title: 'mixi2-js Docs',
@@ -35,14 +35,14 @@ export default defineConfig({
 					tag: 'meta',
 					attrs: {
 						property: 'og:url',
-						content: 'https://otoneko1102.github.io/mixi2-js/',
+						content: 'https://mixi2.js.org/',
 					},
 				},
 				{
 					tag: 'meta',
 					attrs: {
 						property: 'og:image',
-						content: 'https://otoneko1102.github.io/mixi2-js/img/banner.png',
+						content: 'https://mixi2.js.org/img/banner.png',
 					},
 				},
 				{
@@ -64,7 +64,7 @@ export default defineConfig({
 					tag: 'meta',
 					attrs: {
 						name: 'twitter:image',
-						content: 'https://otoneko1102.github.io/mixi2-js/img/banner.png',
+						content: 'https://mixi2.js.org/img/banner.png',
 					},
 				},
 			],

@@ -67,7 +67,7 @@
   "bugs": {
     "url": "https://github.com/otoneko1102/mixi2-js/issues"
   },
-  "homepage": "https://otoneko1102.github.io/mixi2-js/",
+  "homepage": "https://mixi2.js.org/",
   "dependencies": {
     "@grpc/grpc-js": "^1.14.3",
     "@grpc/proto-loader": "^0.8.0"

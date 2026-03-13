@@ -1,6 +1,6 @@
 <div align="center">
 
-<a href="https://otoneko1102.github.io/mixi2-js/">
+<a href="https://mixi2.js.org/">
   <img src="./img/icon.svg" width="200px" height="200px">
 </a>
 
@@ -21,7 +21,7 @@
 
 <div align="center">
 
-**[📖 ドキュメント](https://otoneko1102.github.io/mixi2-js/)** | **[npm](https://www.npmjs.com/package/mixi2-js)** | **[JSR](https://jsr.io/@otoneko1102/mixi2-js)**
+**[📖 ドキュメント](https://mixi2.js.org/)** | **[npm](https://www.npmjs.com/package/mixi2-js)** | **[JSR](https://jsr.io/@otoneko1102/mixi2-js)**
 
 </div>
 
@@ -72,13 +72,13 @@ ESM・CommonJS の両方に対応しています。TypeScript の型定義 (`.d.
 
 ## ドキュメント
 
-使い方・API リファレンス・拡張機能の詳細は **[ドキュメントサイト](https://otoneko1102.github.io/mixi2-js/)** を参照してください。
+使い方・API リファレンス・拡張機能の詳細は **[ドキュメントサイト](https://mixi2.js.org/)** を参照してください。
 
 ---
 
 ## 関連リンク
 
-- **[mixi2-js ドキュメント](https://otoneko1102.github.io/mixi2-js/)**
+- **[mixi2-js ドキュメント](https://mixi2.js.org/)**
 - [mixi2 Developer Platform 公式ドキュメント](https://developer.mixi.social/docs)
 - [mixi2-api](https://github.com/mixigroup/mixi2-api) — API 定義（Protocol Buffers）
 - [mixi2-application-sdk-go](https://github.com/mixigroup/mixi2-application-sdk-go) — 公式 Go SDK
