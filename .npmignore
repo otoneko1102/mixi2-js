@@ -7,6 +7,10 @@ node_modules/
 # Private
 .idea/
 .private/
+.sample/
+
+# Pages
+pages/
 
 # Dev
 src/
