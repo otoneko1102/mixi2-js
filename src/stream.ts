@@ -103,7 +103,11 @@ export class StreamWatcher {
           }
         });
 
+        let disconnected = false;
         const handleDisconnect = async () => {
+          if (disconnected) return;
+          disconnected = true;
+
           if (this.aborted) {
             resolve();
             return;

@@ -21,6 +21,7 @@ export class OAuth2Authenticator implements Authenticator {
 
   private accessToken: string | null = null;
   private expiresAt: number | null = null;
+  private refreshPromise: Promise<void> | null = null;
 
   constructor(options: AuthenticatorOptions) {
     this.clientId = options.clientId;
@@ -32,7 +33,12 @@ export class OAuth2Authenticator implements Authenticator {
     if (this.accessToken && this.expiresAt && Date.now() < this.expiresAt) {
       return this.accessToken;
     }
-    await this.refreshToken();
+    if (!this.refreshPromise) {
+      this.refreshPromise = this.refreshToken().finally(() => {
+        this.refreshPromise = null;
+      });
+    }
+    await this.refreshPromise;
     return this.accessToken!;
   }
 
