@@ -31,7 +31,7 @@ closes #
 <!-- PR を出す前に、以下をすべて確認してください (`npm run check:all` で一括実行できます) -->
 
 - [ ] `npm run check:types` — 型チェック通過
-- [ ] `npm run check:lint` — Lint エラーなし
-- [ ] `npm run check:format` — フォーマット準拠
+- [ ] `npm run lint` — Lint エラーなし
+- [ ] `npm run format` — フォーマット準拠
 - [ ] `npm test` — テスト全件通過
 - [ ] `npm run build` — ビルド成功
