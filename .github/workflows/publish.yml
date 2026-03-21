@@ -22,9 +22,7 @@ jobs:
       - name: Install, Check, Build, and Test
         run: |
           npm ci
-          npm run check
-          npm run build
-          npm test
+          npm run check:all
 
       - name: Publish to npm
         run: |

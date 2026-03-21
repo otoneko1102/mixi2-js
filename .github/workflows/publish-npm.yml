@@ -19,12 +19,10 @@ jobs:
           node-version: "22.x"
           registry-url: "https://registry.npmjs.org"
 
-      - name: Install, Build, and Test
+      - name: Install, Check, Build, and Test
         run: |
           npm ci
-          npm run lint
-          npm run build
-          npm test
+          npm run check:all
 
       - name: Publish to npm
         run: |
