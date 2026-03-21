@@ -1,6 +1,6 @@
 {
   "name": "mixi2-js",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "TypeScript/JavaScript SDK for mixi2 Application API",
   "type": "module",
   "main": "./dist/index.cjs",

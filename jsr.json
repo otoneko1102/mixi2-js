@@ -1,6 +1,6 @@
 {
   "name": "@otoneko1102/mixi2-js",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "exports": "./src/index.ts",
   "publish": {
     "include": [
