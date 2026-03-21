@@ -24,5 +24,6 @@ export default defineConfig({
 
   fmt: {
     tabWidth: 2,
+    ignorePatterns: ["pages/**", "proto/**", "dist/**", "scripts/**", ".private/**", ".sample/**"],
   },
 });
