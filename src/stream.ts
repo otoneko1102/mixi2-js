@@ -103,7 +103,7 @@ export class StreamWatcher {
           }
         });
 
-        s.on("error", async () => {
+        const handleDisconnect = async () => {
           if (this.aborted) {
             resolve();
             return;
@@ -114,11 +114,11 @@ export class StreamWatcher {
           } catch (reconnectErr) {
             reject(reconnectErr);
           }
-        });
+        };
 
-        s.on("end", () => {
-          resolve();
-        });
+        s.on("error", handleDisconnect);
+
+        s.on("end", handleDisconnect);
       };
 
       setupStream(stream);
