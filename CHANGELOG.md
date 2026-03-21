@@ -2,19 +2,7 @@
 
 このプロジェクトのすべての注目すべき変更をバージョンごとに記録します。
 
-## [Unreleased]
-
-### Changed
-
-- ビルドツールチェーンを **Vite+** (`vite-plus`) に移行
-  - tsup → `vp pack`（tsdown / Rolldown ベース）
-  - Jest → `vp test`（Vitest ベース）
-  - ESLint + Prettier → `vp check`（Oxlint + Oxfmt）
-  - 各ツールの設定を `vite.config.ts` に統合
-- `package.json` の ESM 出力拡張子を `.js` → `.mjs` / `.d.ts` → `.d.mts` に変更（tsdown の標準出力形式に合わせる）
-- 不要になった設定ファイルを削除: `tsup.config.ts`, `jest.config.json`, `.prettierrc.json`, `eslint.config.js`
-
-## [1.3.0] - 2026-03-21
+## [1.3.0] - 2026-03-22
 
 ### Added
 
@@ -32,6 +20,13 @@
 ### Changed
 
 - `StreamWatcherOptions` — `maxRetries` オプションを追加（デフォルト: 3）
+- ビルドツールチェーンを **Vite+** (`vite-plus`) に移行
+  - tsup → `vp pack`（tsdown / Rolldown ベース）
+  - Jest → `vp test`（Vitest ベース）
+  - ESLint + Prettier → `vp check`（Oxlint + Oxfmt）
+  - 各ツールの設定を `vite.config.ts` に統合
+- `package.json` の ESM 出力拡張子を `.js` → `.mjs` / `.d.ts` → `.d.mts` に変更（tsdown の標準出力形式に合わせる）
+- 不要になった設定ファイルを削除: `tsup.config.ts`, `jest.config.json`, `.prettierrc.json`, `eslint.config.js`
 
 ## [1.2.1] - 2026-03-21
 
