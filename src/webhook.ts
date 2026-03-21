@@ -72,10 +72,8 @@ export class WebhookServer {
       return;
     }
 
-    let signature: Buffer;
-    try {
-      signature = Buffer.from(signatureBase64, "base64");
-    } catch {
+    const signature = Buffer.from(signatureBase64, "base64");
+    if (signature.length === 0) {
       res.writeHead(401);
       res.end("x-mixi2-application-event-signature is invalid");
       return;
