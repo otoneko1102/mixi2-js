@@ -79,7 +79,7 @@
     "eslint": "^10.0.3",
     "eslint-config-prettier": "^10.1.8",
     "jest": "^30.3.0",
-    "npm-check-updates": "^19.6.3",
+    "npm-check-updates": "^19.6.5",
     "prettier": "^3.8.1",
     "ts-jest": "^29.4.6",
     "tsup": "^8.5.1",
