@@ -32,6 +32,14 @@ export default defineConfig({
 
   fmt: {
     tabWidth: 2,
-    ignorePatterns: [".github/**", "pages/**", "proto/**", "dist/**", "scripts/**", ".private/**", ".sample/**"],
+    ignorePatterns: [
+      ".github/**",
+      "pages/**",
+      "proto/**",
+      "dist/**",
+      "scripts/**",
+      ".private/**",
+      ".sample/**",
+    ],
   },
 });
