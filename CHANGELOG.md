@@ -2,6 +2,16 @@
 
 このプロジェクトのすべての注目すべき変更をバージョンごとに記録します。
 
+## [1.4.0] - 2026-03-23
+
+**mixi2 API v1.1.0** の変更に対応
+
+### Added
+
+- `Client.deletePost(postId)` — ポスト削除 RPC を追加（公式 API `DeletePost` に対応）
+- `Client.getAccessToken()` — 現在のアクセストークンを取得するメソッドを追加
+- `MediaUploader.upload(uploadUrl, data)` — HTTP アップロードメソッドを追加（`Authorization` ヘッダーを自動付与）
+
 ## [1.3.0] - 2026-03-22
 
 ### Added
