@@ -72,6 +72,14 @@ message CreatePostResponse {
   model.v1.Post post = 1;
 }
 
+message DeletePostRequest {
+  string post_id = 1;
+}
+
+message DeletePostResponse {
+  bool deleted = 1;
+}
+
 message SendChatMessageRequest {
   string room_id = 1;
   optional string text = 2;
@@ -103,6 +111,7 @@ service ApplicationService {
   rpc GetUsers(GetUsersRequest) returns (GetUsersResponse);
   rpc GetPosts(GetPostsRequest) returns (GetPostsResponse);
   rpc CreatePost(CreatePostRequest) returns (CreatePostResponse);
+  rpc DeletePost(DeletePostRequest) returns (DeletePostResponse);
   rpc InitiatePostMediaUpload(InitiatePostMediaUploadRequest) returns (InitiatePostMediaUploadResponse);
   rpc GetPostMediaStatus(GetPostMediaStatusRequest) returns (GetPostMediaStatusResponse);
   rpc SendChatMessage(SendChatMessageRequest) returns (SendChatMessageResponse);
