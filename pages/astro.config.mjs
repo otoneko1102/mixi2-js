@@ -98,7 +98,8 @@ export default defineConfig({
           items: [
             { label: "型定義", slug: "reference/types" },
             { label: "Enum 定義", slug: "reference/enums" },
-            { label: "環境変数・レート制限", slug: "reference/environment" },
+            { label: "環境変数", slug: "reference/environment" },
+            { label: "レート制限", slug: "reference/rate-limits" },
           ],
         },
         {

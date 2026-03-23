@@ -7,7 +7,7 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 ## 概要
 
-`Client` は 8 つの RPC メソッドを提供する gRPC API クライアントです。
+`Client` は 9 つの RPC メソッドを提供する gRPC API クライアントです。
 
 ## セットアップ
 
@@ -52,6 +52,7 @@ const client = new Client({
 | `getUsers(userIdList)`             | `string[]`                       | `Promise<User[]>`                          | ユーザー情報を一括取得                     |
 | `getPosts(postIdList)`             | `string[]`                       | `Promise<Post[]>`                          | ポスト情報を一括取得                       |
 | `createPost(request)`              | `CreatePostRequest`              | `Promise<Post>`                            | ポストを作成（返信/引用/メディア添付対応） |
+| `deletePost(postId)`               | `string`                         | `Promise<boolean>`                         | ポストを削除                               |
 | `initiatePostMediaUpload(request)` | `InitiatePostMediaUploadRequest` | `Promise<InitiatePostMediaUploadResponse>` | メディアアップロードを開始                 |
 | `getPostMediaStatus(mediaId)`      | `string`                         | `Promise<GetPostMediaStatusResponse>`      | メディアの処理状況を取得                   |
 | `sendChatMessage(request)`         | `SendChatMessageRequest`         | `Promise<ChatMessage>`                     | チャットメッセージを送信                   |
@@ -87,6 +88,13 @@ const post = await client.createPost({ text: "Hello mixi2!" });
 :::note
 `inReplyToPostId` と `quotedPostId` は同時に指定できません。
 :::
+
+### ポスト削除
+
+```typescript
+const deleted = await client.deletePost("post-id");
+// deleted === true なら削除成功
+```
 
 ### メディアアップロード → ポスト添付
 

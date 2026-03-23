@@ -50,13 +50,13 @@ while (true) {
 }
 ```
 
-`MediaUploader` を使えば `waitForReady()` を呼ぶだけです:
+`MediaUploader` を使えば `upload()` と `waitForReady()` を呼ぶだけです:
 
 ```typescript
 // ✅ 簡潔
 const uploader = new MediaUploader(client);
 const { mediaId, uploadUrl } = await uploader.initiate(request);
-// ... HTTP POST ...
+await uploader.upload(uploadUrl, imageBuffer);
 await uploader.waitForReady(mediaId);
 ```
 
@@ -78,21 +78,20 @@ await uploader.waitForReady(mediaId);
 </Tabs>
 
 ```typescript
-const uploader = new MediaUploader(client);
+import { readFile } from 'node:fs/promises';
 
-// 1. アップロード開始
+const uploader = new MediaUploader(client);
+const imageBuffer = await readFile("image.png");
+
+// 1. アップロード開始（uploadUrl と mediaId を取得）
 const { mediaId, uploadUrl } = await uploader.initiate({
   contentType: "image/png",
-  dataSize: imageBuffer.length,
+  dataSize: imageBuffer.byteLength,
   mediaType: MediaUploadType.IMAGE,
 });
 
-// 2. メディアデータを送信
-await fetch(uploadUrl, {
-  method: "POST",
-  headers: { "Content-Type": "image/png" },
-  body: imageBuffer,
-});
+// 2. メディアデータを送信（Authorization ヘッダーを自動付与）
+await uploader.upload(uploadUrl, imageBuffer.buffer);
 
 // 3. 完了まで待機
 await uploader.waitForReady(mediaId);
@@ -103,6 +102,10 @@ await client.createPost({
   mediaIdList: [mediaId],
 });
 ```
+
+:::note
+`upload()` メソッドは内部でアクセストークンを自動取得し、`Authorization: Bearer {token}` ヘッダーを付与します。`uploadUrl` の有効期限は画像で **200 秒**、動画で **600 秒**です。
+:::
 
 ## オプション
 
@@ -128,15 +131,28 @@ new MediaUploader(client: Client, options?: MediaUploaderOptions)
 
 ### メソッド
 
-| メソッド                | 引数                             | 戻り値                   | 説明                                                      |
-| ----------------------- | -------------------------------- | ------------------------ | --------------------------------------------------------- |
-| `initiate(request)`     | `InitiatePostMediaUploadRequest` | `Promise<UploadedMedia>` | アップロードを開始し `mediaId` と `uploadUrl` を返す      |
-| `waitForReady(mediaId)` | `string`                         | `Promise<string>`        | 処理完了までポーリングして待機。完了時に `mediaId` を返す |
+| メソッド                          | 引数                                       | 戻り値                   | 説明                                                      |
+| --------------------------------- | ------------------------------------------ | ------------------------ | --------------------------------------------------------- |
+| `initiate(request)`               | `InitiatePostMediaUploadRequest`           | `Promise<UploadedMedia>` | アップロードを開始し `mediaId` と `uploadUrl` を返す      |
+| `upload(uploadUrl, data)`         | `string, ArrayBuffer`                      | `Promise<void>`          | `uploadUrl` にメディアデータを HTTP POST で送信           |
+| `waitForReady(mediaId)`           | `string`                                   | `Promise<string>`        | 処理完了までポーリングして待機。完了時に `mediaId` を返す |
 
 ### エラー
 
-- アップロードが失敗した場合: `Error: Media upload failed: {mediaId}`
+- `upload()` が HTTP エラーを返した場合: `Error: Media upload failed ({status}): {body}`
+- `waitForReady()` でアップロードが失敗した場合: `Error: Media upload failed: {mediaId}`
 - タイムアウトした場合: `Error: Media upload timed out after {timeout}ms: {mediaId}`
+
+### メディアアップロードの制限
+
+| 項目                 | 制限                         |
+| -------------------- | ---------------------------- |
+| 画像最大サイズ       | 15 MB                        |
+| 動画最大サイズ       | 50 MB                        |
+| 対応フォーマット     | JPEG, PNG, GIF, MP4 など     |
+| 有効期限（画像）     | 200 秒                       |
+| 有効期限（動画）     | 600 秒                       |
+| アップロード容量上限 | 1 GB / 日（アプリ単位）      |
 
 <Aside type="note">
   このヘルパーは SDK 独自の拡張機能であり、公式 API 仕様には含まれません。公式の仕様については
