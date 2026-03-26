@@ -1,0 +1,117 @@
+name: 上流 API リリース監視
+
+on:
+  schedule:
+    - cron: "0 11 * * *" # 毎日 JST 20:00
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - repo: mixigroup/mixi2-api
+            name: mixi2-api
+            description: "proto 定義・API 仕様"
+          - repo: mixigroup/mixi2-application-sdk-go
+            name: mixi2-application-sdk-go
+            description: "公式 Go SDK"
+
+    steps:
+      - name: 最新リリースを取得
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! response=$(gh api "repos/${{ matrix.repo }}/releases/latest" 2>/dev/null); then
+            echo "No release found for ${{ matrix.repo }}, skipping."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          tag=$(echo "$response" | jq -r '.tag_name')
+          url=$(echo "$response" | jq -r '.html_url')
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: 同一バージョンの Issue が存在するか確認
+        id: check
+        if: steps.release.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="${{ steps.release.outputs.tag }}"
+          count=$(gh issue list \
+            --repo "${{ github.repository }}" \
+            --state all \
+            --limit 500 \
+            --json title \
+            --jq "[.[] | select(.title | (contains(\"${{ matrix.name }}\") and contains(\"${tag}\")))] | length")
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+
+      - name: upstream ラベルを作成（存在しない場合）
+        if: steps.release.outputs.skip != 'true' && steps.check.outputs.count == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create "upstream" \
+            --color "0075ca" \
+            --description "上流リポジトリの変更への追従" \
+            --repo "${{ github.repository }}" \
+            --force
+
+      - name: Issue を作成
+        if: steps.release.outputs.skip != 'true' && steps.check.outputs.count == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="${{ steps.release.outputs.tag }}"
+          cat > /tmp/issue-body.md << ISSUEEOF
+          ## 概要
+
+          上流リポジトリ [${{ matrix.repo }}](https://github.com/${{ matrix.repo }}) の新バージョン **${tag}** がリリースされました。
+          mixi2-js への追従が必要か確認・対応してください。
+
+          ## リンク
+
+          - 🔖 [リリースノート](${{ steps.release.outputs.url }})
+          - 📂 [リポジトリ](https://github.com/${{ matrix.repo }})
+          - 🔍 [前バージョンとの差分](https://github.com/${{ matrix.repo }}/releases)
+
+          ---
+
+          ## 対応チェックリスト
+
+          ### 調査
+          - [ ] リリースノートを確認する
+          - [ ] ${{ matrix.description }} の変更点を確認する（新規 RPC・型・フィールドの追加、既存の変更・廃止など）
+
+          ### 実装
+          - [ ] proto ファイルを更新する（変更があれば）
+          - [ ] 新規 RPC を実装する（追加があれば）
+          - [ ] 既存実装を修正する（変更・廃止があれば）
+          - [ ] 型定義・Enum を追加・修正する
+          - [ ] テストを追加・更新する
+
+          ### リリース
+          - [ ] ドキュメント（pages/）を更新する
+          - [ ] CHANGELOG.md を更新する
+          - [ ] バージョンを更新して npm / JSR に公開する
+
+          ---
+
+          > このIssueは[上流APIリリース監視ワークフロー](https://github.com/${{ github.repository }}/actions/workflows/check-upstream.yml)によって自動作成されました。
+          ISSUEEOF
+
+          gh issue create \
+            --repo "${{ github.repository }}" \
+            --title "⬆️ ${{ matrix.name }} ${tag} がリリースされました" \
+            --label "upstream" \
+            --label "enhancement" \
+            --body-file /tmp/issue-body.md

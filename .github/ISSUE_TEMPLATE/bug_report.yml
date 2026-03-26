@@ -47,7 +47,7 @@ body:
     id: version
     attributes:
       label: mixi2-js バージョン
-      placeholder: "例: 1.3.0"
+      placeholder: "例: 1.4.0"
     validations:
       required: true
 
@@ -55,7 +55,7 @@ body:
     id: node
     attributes:
       label: Node.js バージョン
-      placeholder: "例: 22.0.0"
+      placeholder: "例: 24.0.0"
     validations:
       required: false
 
@@ -67,5 +67,30 @@ body:
         - gRPC ストリーミング
         - Webhook
         - 該当しない
+    validations:
+      required: false
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: 問題のあるモジュール（該当する場合）
+      multiple: true
+      options:
+        - Client
+        - OAuth2Authenticator
+        - WebhookServer
+        - StreamWatcher
+        - MediaUploader
+        - Helpers（EventRouter, PostBuilder など）
+        - 型定義・Enum
+        - その他
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: 補足情報（任意）
+      description: 関連する Issue、PR、環境情報などがあれば記載してください。
     validations:
       required: false

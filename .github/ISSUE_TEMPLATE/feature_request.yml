@@ -49,3 +49,14 @@ body:
         - その他
     validations:
       required: true
+
+  - type: dropdown
+    id: breaking
+    attributes:
+      label: 破壊的変更の可能性
+      options:
+        - なし（後方互換）
+        - あり（メジャーバージョンアップが必要）
+        - 不明
+    validations:
+      required: false

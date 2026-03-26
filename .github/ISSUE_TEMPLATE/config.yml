@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: npm
+    url: https://www.npmjs.com/package/mixi2-js
+    about: npm パッケージページ
+  - name: JSR
+    url: https://jsr.io/@otoneko1102/mixi2-js
+    about: JSR パッケージページ
+  - name: ドキュメント
+    url: https://mixi2.js.org
+    about: 公式ドキュメント（使い方・API リファレンス）

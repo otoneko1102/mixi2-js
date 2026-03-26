@@ -1,0 +1,61 @@
+name: 上流 API 仕様変更への追従
+description: mixigroup/mixi2-api または mixigroup/mixi2-application-sdk-go の新バージョンに追従するタスク
+labels: ["upstream", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        上流リポジトリの変更に追従するための Issue です。
+        通常はワークフローによって自動作成されますが、手動で作成する場合に使用してください。
+
+  - type: dropdown
+    id: repo
+    attributes:
+      label: 対象リポジトリ
+      options:
+        - mixigroup/mixi2-api
+        - mixigroup/mixi2-application-sdk-go
+    validations:
+      required: true
+
+  - type: input
+    id: new_version
+    attributes:
+      label: 新バージョン
+      placeholder: "例: v1.2.0"
+    validations:
+      required: true
+
+  - type: input
+    id: current_version
+    attributes:
+      label: 現在の対応バージョン
+      placeholder: "例: v1.1.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: changes
+    attributes:
+      label: 変更概要
+      description: 新バージョンでの主な変更点を記載してください（リリースノートから抜粋可）。
+      placeholder: |
+        - 新規 RPC: `FooBar`
+        - 型変更: `SomeRequest.field` が `string` → `int32` に変更
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 対応チェックリスト
+      options:
+        - label: リリースノートを確認した
+        - label: proto ファイルを更新した（変更があれば）
+        - label: 新規 RPC を実装した（追加があれば）
+        - label: 既存実装を修正した（変更・廃止があれば）
+        - label: 型定義・Enum を追加・修正した
+        - label: テストを追加・更新した
+        - label: ドキュメント（`pages/`）を更新した
+        - label: CHANGELOG.md を更新した
+        - label: バージョンを更新して npm / JSR に公開した
