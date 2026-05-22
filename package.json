@@ -80,7 +80,7 @@
     "prettier": "latest",
     "tsdown": "0.21.10",
     "typescript": "6.0.3",
-    "vitest": "^4.1.6"
+    "vitest": "^4.1.7"
   },
   "engines": {
     "node": ">=20.19.0"
